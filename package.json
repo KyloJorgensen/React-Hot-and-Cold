@@ -13,7 +13,7 @@
     "clean:js": "rm -f build/$npm_package_name.$npm_package_version.js build/$npm_package_name.$npm_package_version.js.map",
     "serve": "http-server ./",
     "test": "mocha --compilers js:babel-register test/**/*.js*",
-    "webpack": "webpack"
+    "windows:build": "webpack"
   },
   "repository": {
     "type": "git",

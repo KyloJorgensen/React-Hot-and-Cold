@@ -3,14 +3,14 @@
 var redux = require('redux');
 var createStore = redux.createStore;
 
-var guessesReducers = require('./guesses/guesses-reducers');
+var gameReducers = require('./reducers.js');
 
 var initialState = {};
 
 var reducers = function(state, action) {
     state = state || initialState;
     return {
-        guesses: guessesReducers(state.guesses, action)
+        game: gameReducers(state.game, action)
     };
 };
 

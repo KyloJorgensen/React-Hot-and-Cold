@@ -15,7 +15,7 @@ var GuessList = function(props) {
     return (
     	<div className="guess-list">
     		<ul>
-                
+                {guessList}
             </ul>
     	</div>
     );

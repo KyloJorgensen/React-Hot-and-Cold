@@ -2,6 +2,7 @@
 
 var store = require('../store');
 var headerComponent = require('./header-component');
+var gameComponent = require('./game-component');
 
 console.log(store);
 
@@ -12,6 +13,7 @@ var HotAndColdApp = React.createClass({
 	render: function() {
 	    return (
 	    	<headerComponent newGame={this.newGame} />
+	    	<gameComponent />
 	    );
 	}
 });
