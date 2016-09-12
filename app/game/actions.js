@@ -2,7 +2,6 @@
 // Generate Random Number
 // response to guess
 // displaying guesses
-// 
 
 'use strict';
 
