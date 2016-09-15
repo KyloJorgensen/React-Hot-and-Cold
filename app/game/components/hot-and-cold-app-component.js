@@ -1,19 +1,18 @@
 'use strict';
 
-var store = require('../store');
-var headerComponent = require('./header-component');
-var gameComponent = require('./game-component');
+var React = require('react');
 
-console.log(store);
+var HeaderComponent = require('./header-component');
+var GameComponent = require('./game-component');
+
 
 var HotAndColdApp = React.createClass({
-	newGame: function() {
-		console.log('newgame');
-	},
 	render: function() {
 	    return (
-	    	<headerComponent newGame={this.newGame} />
-	    	<gameComponent />
+	    	<div className="hot-and-cold-app">
+	    		<HeaderComponent />
+	    		<GameComponent />
+	    	</div>
 	    );
 	}
 });

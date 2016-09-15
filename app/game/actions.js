@@ -13,34 +13,24 @@ var guessNumber = function(number) {
     }
 };
 
-var GENERATE_RANDOM_NUMBER = 'GENERATE_RANDOM_NUMBER';
-var generateRandomNumber = function() {
+var WHAT = 'WHAT';
+var what = function() {
     return {
-        type: GENERATE_RANDOM_NUMBER
+        type: WHAT
     };
 };
 
-var RESPONSE_TO_GUESS = 'RESPONSE_TO_GUESS';
-var responseToGuess = function(guess) {
+var NEW_GAME = 'NEW_GAME';
+var newGame = function() {
     return {
-        type: RESPONSE_TO_GUESS,
-        guess: guess
-    }
-};
-
-var DISPLAY_NEW_GUESS = 'DISPLAY_NEW_GUESS';
-var displayNewGuess = function(guess) {
-    return {
-        type: DISPLAY_NEW_GUESS,
-        guess: guess
+        type: NEW_GAME
     };
 };
+
 
 exports.GUESS_NUMBER = GUESS_NUMBER;
 exports.guessNumber = guessNumber;
-exports.GENERATE_RANDOM_NUMBER = GENERATE_RANDOM_NUMBER;
-exports.generateRandomNumber = generateRandomNumber;
-exports.RESPONSE_TO_GUESS = RESPONSE_TO_GUESS;
-exports.responseToGuess = responseToGuess;
-exports.DISPLAY_NEW_GUESS = DISPLAY_NEW_GUESS;
-exports.displayNewGuess = displayNewGuess;
+exports.WHAT = WHAT;
+exports.what = what;
+exports.NEW_GAME = NEW_GAME;
+exports.newGame = newGame;

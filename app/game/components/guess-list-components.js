@@ -1,20 +1,19 @@
 'use strict';
 
-var GuessList = function(props) {
+var React = require('react');
 
+var GuessList = function(props) {
     var guessList = Object.keys(props.guessList).map(function(guess, index) {
         return (
             <li key={index}>
-                {guess}
+                {props.guessList[guess]}
             </li>
         );
     });
 
-    console.log(guessList);
-
     return (
     	<div className="guess-list">
-    		<ul>
+    		<ul id="guessList" className="guessBox clearfix">
                 {guessList}
             </ul>
     	</div>

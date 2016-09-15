@@ -1,21 +1,49 @@
 'use strict';
 
-var actions = require('./guesses-actions');
+var actions = require('./actions');
 
-var initialGuessesState = [];
+var initialHotAndColdGameState = {
+    feedback: 'Make your Guess!',
+    guessList: [],
+    numberOfGuesses: '0',
+    randomNumber: Math.floor((Math.random() * 100) + 1),
+    gameOver: false,
+    what: false
+};
 
-var guessesReducer = function(state, action) {
-    state = state || initialGuessesState;
-    if (action.type === actions.GUESS_NUMBER) {
+var hotAndColdGameReducer = function(state, action) {
+    state = state || initialHotAndColdGameState;
+    if (action.type === actions.NEW_GAME) {
+        state.feedback = 'Make your Guess!';
+        state.guessList = [];
+        state.numberOfGuesses = '0';
+        state.randomNumber = Math.floor((Math.random() * 100) + 1);
+        state.gameOver = false;
+    } 
+    else if (action.type === actions.GUESS_NUMBER) {
+        state.guessList.push(action.number);
+        state.numberOfGuesses++;
 
+        var difference = Math.abs(state.randomNumber - action.number);
+
+        difference <= 40 ? state.feedback = 'less then warm' : state.feedback = 'cold'; 
+        difference <= 30 ? state.feedback = 'warm' : '';
+        difference <= 20 ? state.feedback = 'Kinda hot' : '';
+        difference <= 10 ? state.feedback = 'hot' : '';
+
+        if (!difference) {
+            state.feedback = 'You Won. Click new game to play again';
+            state.gameOver = true;
+        }
     }
-    else if (action.type === actions.RESPONSE_TO_GUESS) {
-
-    }
-    else if (action.type === actions.DISPLAY_NEW_GUESS) {
-
+    else if (action.type === actions.WHAT) {
+        if (state.what) {
+            state.what = false;
+        } else {
+            state.what = true;
+        }
     }
     return state;
 };
 
-module.exports = guessesReducer;
+module.exports = hotAndColdGameReducer;
