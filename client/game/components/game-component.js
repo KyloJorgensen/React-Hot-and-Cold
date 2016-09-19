@@ -13,19 +13,18 @@ var Game = React.createClass({
     onSubmit: function(event) {
         event.preventDefault();
         var self = this;
-        for (var i = 0; i < this.props.guessList.length; i++) {
-            if (this.props.guessList[i] == this.refs.guessNumber.value) {
-                var number = this.refs.guessNumber.value;
-                oldNumber = '';
-                this.refs.guessNumber.value = oldNumber;
-                return alert(number + ' has Already been guessed! Please try another one.');
-            }
-        }
-
         if (!this.props.gameOver) {
             if (this.refs.guessNumber.value == '') {
                 alert('Required Field: Enter Your Guess');
             } else {
+                for (var i = 0; i < this.props.guessList.length; i++) {
+                    if (this.props.guessList[i] == this.refs.guessNumber.value) {
+                        var number = this.refs.guessNumber.value;
+                        oldNumber = '';
+                        this.refs.guessNumber.value = oldNumber;
+                        return alert(number + ' has Already been guessed! Please try another one.');
+                    }
+                }
                 this.props.dispatch(
                     actions.guessNumber(this.refs.guessNumber.value)
                 );
@@ -50,6 +49,14 @@ var Game = React.createClass({
         }
     },
     render: function() {
+        this.props.dispatch(
+            actions.getFewestGuesses()
+        );
+        if (this.props.gameOver) {
+            this.props.dispatch(
+                actions.postFewestGuesses(this.props.numberOfGuesses)
+            );
+        }
         return (
         	<section className="game">
         		<h2 id="feedback">{this.props.feedback}</h2>
@@ -59,6 +66,7 @@ var Game = React.createClass({
     			</form>
                 <p>Guess <span id="count">{this.props.numberOfGuesses}</span>!</p>
         		<GuessList guessList={this.props.guessList} />
+                <p> Fewest Guesses: <span>{this.props.fewestGuesses}</span></p>
         	</section>
         );
     }
@@ -69,7 +77,8 @@ var mapStateToProps = function(state, props) {
         feedback: state.game.feedback,
         numberOfGuesses: state.game.numberOfGuesses,
         guessList: state.game.guessList,
-        gameOver: state.game.gameOver
+        gameOver: state.game.gameOver,
+        fewestGuesses: state.game.fewestGuesses
     };
 };
 

@@ -4,8 +4,8 @@ var React = require('react'),
     ReactDOM = require('react-dom'),
     Provider = require('react-redux').Provider;
 
-var store = require('./app/game/store');
-var HotAndColdApp = require('./app/game/components/hot-and-cold-app-component');
+var store = require('./game/store');
+var HotAndColdApp = require('./game/components/hot-and-cold-app-component');
 
 document.addEventListener('DOMContentLoaded', function() {
     ReactDOM.render(

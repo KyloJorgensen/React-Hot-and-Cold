@@ -8,7 +8,8 @@ var initialHotAndColdGameState = {
     numberOfGuesses: '0',
     randomNumber: Math.floor((Math.random() * 100) + 1),
     gameOver: false,
-    what: false
+    what: false,
+    fewestGuesses: 100000
 };
 
 var hotAndColdGameReducer = function(state, action) {
@@ -34,6 +35,7 @@ var hotAndColdGameReducer = function(state, action) {
         if (!difference) {
             state.feedback = 'You Won. Click new game to play again';
             state.gameOver = true;
+            
         }
     }
     else if (action.type === actions.WHAT) {
@@ -43,6 +45,27 @@ var hotAndColdGameReducer = function(state, action) {
             state.what = true;
         }
     }
+    else if (action.type === actions.GET_FEWEST_GUESSES_SUCCESS) {
+        // Find the index of the matching repository
+        state.fewestGuesses = action.fewestGuesses;
+        return state;
+    }
+    else if (action.type === actions.GET_FEWEST_GUESSES_ERROR) {
+        // Find the index of the matching repository
+        alert(action.error);
+        return state;
+    }
+    else if (action.type === actions.POST_FEWEST_GUESSES_SUCCESS) {
+        // Find the index of the matching repository
+        state.fewestGuesses = action.fewestGuesses;
+        return state;
+    }
+    else if (action.type === actions.POST_FEWEST_GUESSES_ERROR) {
+        // Find the index of the matching repository
+        alert(action.error);
+        return state;
+    }
+
     return state;
 };
 

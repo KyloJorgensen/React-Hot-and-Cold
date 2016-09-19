@@ -2,18 +2,19 @@
   "name": "react-hot-and-cold",
   "version": "1.0.0",
   "description": "React Hot and Hold App",
-  "main": "index.js",
+  "main": "./client/index.js",
   "scripts": {
-    "dev:build": "npm run build && npm run serve",
-    "mkdir": "mkdir -p build",
-    "build": "npm run clean && npm run mkdir && npm run build:js",
-    "watch": "npm run watch:html & npm run watch:css & npm run watch:js",
-    "clean": "rm -rf build",
+    "mkdir": "mkdir -p public",
+    "build": "npm run clean && npm run mkdir && npm run build:html && npm run build:css && npm run build:js",
+    "clean": "rm -rf public",
+    "build:html": "npm run clean:html && cp client/index.html public/",
+    "clean:html": "rm -f public/index.html",
+    "build:css": "npm run clean:css && mkdir -p public/styles && cp client/styles/reset.css public/styles/ && cp client/styles/style.css public/styles/",
+    "clean:css": "rm -f public/styles/reset.css && rm -f public/styles/style.css && rm -f public/styles",
     "build:js": "npm run clean:js && webpack",
-    "clean:js": "rm -f build/$npm_package_name.$npm_package_version.js build/$npm_package_name.$npm_package_version.js.map",
-    "serve": "http-server ./",
-    "test": "mocha --compilers js:babel-register test/**/*.js*",
-    "windows:build": "webpack"
+    "clean:js": "rm -f public/$npm_package_name.$npm_package_version.js public/$npm_package_name.$npm_package_version.js.map",
+    "start": "node server/server.js",
+    "test": "mocha --compilers js:babel-register test/**/*.js*"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,10 @@
     "url": "https://github.com/KyloJorgensen/React-Hot-and-Cold/issues"
   },
   "homepage": "https://github.com/KyloJorgensen/React-Hot-and-Cold#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "mongoose": "^4.6.0"
+  },
   "devDependencies": {
     "babel-core": "^6.14.0",
     "babel-loader": "^6.2.5",
@@ -35,7 +40,8 @@
     "babel-preset-react": "^6.11.1",
     "babel-register": "^6.14.0",
     "chai": "^3.5.0",
-    "http-server": "^0.9.0",
+    "isomorphic-fetch": "^2.2.1",
+    "jquery": "^3.1.0",
     "mocha": "^3.0.2",
     "react": "^15.3.1",
     "react-addons-test-utils": "^15.3.1",
@@ -43,6 +49,7 @@
     "react-redux": "^4.4.5",
     "react-router": "^2.7.0",
     "redux": "^3.6.0",
+    "redux-thunk": "^2.1.0",
     "webpack": "^1.13.2"
   },
   "babel": {

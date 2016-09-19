@@ -2,6 +2,8 @@
 
 var redux = require('redux');
 var createStore = redux.createStore;
+var applyMiddleware = redux.applyMiddleware;
+var thunk = require('redux-thunk').default;
 
 var hotAndColdGameReducer = require('./reducers.js');
 
@@ -14,5 +16,5 @@ var reducers = function(state, action) {
     };
 };
 
-var store = createStore(reducers);
+var store = createStore(reducers, applyMiddleware(thunk));
 module.exports  = store;
