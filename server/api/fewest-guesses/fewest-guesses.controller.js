@@ -14,7 +14,17 @@ FewestGuessesController.prototype.getFewestGuesses = function(req, res, next) {
 			}
 		});
     }).then(function(fewestGuesses) {
-    	res.status(200).json(fewestGuesses[0].fewestGuesses);
+        console.log(fewestGuesses);
+        if (fewestGuesses.length == 1) {
+            console.log('test');
+            if ('fewestGuesses' in fewestGuesses[0]) {
+                res.status(200).json(fewestGuesses[0].fewestGuesses); 
+            } else {
+                next({message: 'missing data', status: 500})
+            }
+        } else {
+            res.status(200).json('no record made');
+        }
     }).catch(function(error) {
     	next(error);
     });

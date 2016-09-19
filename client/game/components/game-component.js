@@ -49,14 +49,14 @@ var Game = React.createClass({
         }
     },
     render: function() {
-        this.props.dispatch(
-            actions.getFewestGuesses()
-        );
         if (this.props.gameOver) {
             this.props.dispatch(
                 actions.postFewestGuesses(this.props.numberOfGuesses)
             );
         }
+        this.props.dispatch(
+            actions.getFewestGuesses()
+        );
         return (
         	<section className="game">
         		<h2 id="feedback">{this.props.feedback}</h2>

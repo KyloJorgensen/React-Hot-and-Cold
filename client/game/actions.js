@@ -36,7 +36,6 @@ var getFewestGuesses = function() {
                 getFewestGuessesSuccess(fewestGuesses)
             );
         }).fail(function(error){
-            console.log(error);
             return dispatch(
                 getFewestGuessesError(error)
             );
