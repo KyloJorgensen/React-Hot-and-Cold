@@ -32,6 +32,8 @@ FewestGuessesController.prototype.postFewestGuesses = function(req, res, next) {
 		return next({message: 'fewestGuesses needs to be a whole number above 0'});
 	}
 
+    console.log(req.body);
+
     return new Promise(function(resolve, reject) {
     	FewestGuesses.find({}, function(error, fewestGuesses) {
 			if (error) {
